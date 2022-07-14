@@ -12,10 +12,10 @@ if (mysqli_num_rows($result) == 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $body .= "<div class='card' style='width: 18rem;'>
   <div class='card-body'>
-    <h5 class='card-title'>{$row["first_name"]} {$row["last_name"]} {$row["id"]}</h5>
-    <p class='card-text'>{$row["email"]} | {$row["status"]}</p>
-    <a href='#' class='btn btn-primary'>Details</a>
-    <a href='#' class='btn btn-warning'>Update</a>
+    <h5 class='card-title'>{$row["first_name"]} {$row["id"]}</h5>
+    <p class='card-text'>{$row["email"]}</p>
+    <a href='details.php?id={$row["id"]}' class='btn btn-primary'>Details</a>
+    <a href='update.php?id={$row["id"]}' class='btn btn-warning'>Update</a>
     <a href='delete.php?id={$row["id"]}' class='btn btn-danger'>Delete</a>
   </div>
 </div>";
@@ -37,6 +37,17 @@ mysqli_close($conn);
 
 <body>
     <a href="create.php">Create User</a>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="filter.php">All</a></li>
+            <li><a class="dropdown-item" href="filter.php?status=admin">Admin</a></li>
+            <li><a class="dropdown-item" href="filter.php?status=user">User</a></li>
+        </ul>
+    </div>
+
     <hr>
     <div class="container">
         <div class="row rows-col-lg-4 rows-col-md-2 rows-col-sm-1">
